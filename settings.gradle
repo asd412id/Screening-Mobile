@@ -1,0 +1,2 @@
+rootProject.name = "Screening App"
+include ':app'

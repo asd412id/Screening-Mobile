@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/loadingwrap"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:indeterminateTint="@color/blue_700"
+        android:indeterminate="true"
+        tools:targetApi="lollipop" />
+    <TextView
+        android:id="@+id/progresstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Memproses data ..."
+        android:textSize="21sp"
+        android:paddingHorizontal="7dp"
+        android:textColor="@color/blue_700"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
