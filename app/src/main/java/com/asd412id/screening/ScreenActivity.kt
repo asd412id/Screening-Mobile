@@ -221,18 +221,17 @@ class ScreenActivity : AppCompatActivity() {
                 adapter = screenAdapter
             }
         }
-        screenAdapter.notifyDataSetChanged()
         response.has("total").let { total = response.getInt("total") }
         response.has("count").let {
             if (isLoading && count!! > 0){
                 listScreen.let {
                     listScreen.removeAt(count!!)
-                    screenAdapter.notifyDataSetChanged()
                 }
             }
             count = count?.plus(response.getInt("count"))
         }
         response.has("page").let { page = response.getInt("page") }
+        screenAdapter.notifyDataSetChanged()
         isLoading = false
     }
 
@@ -339,6 +338,13 @@ class ScreenActivity : AppCompatActivity() {
     }
 
     private fun showError(error: String){
+        if (isLoading && count!! > 0){
+            listScreen.let {
+                listScreen.removeAt(count!!)
+                screenAdapter.notifyDataSetChanged()
+            }
+            isLoading = false
+        }
         val builder = AlertDialog.Builder(this)
         builder.setMessage(error)
         val dialog = builder.create()

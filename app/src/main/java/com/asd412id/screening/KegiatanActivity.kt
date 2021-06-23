@@ -142,10 +142,10 @@ class KegiatanActivity : AppCompatActivity() {
         if (isLoading && count > 0){
             listKegiatan.removeAt(count)
         }
-        kegiatanAdapter.notifyDataSetChanged()
         total = response.getInt("total")
         count = count.plus(response.getInt("count"))
         page = response.getInt("page")
+        kegiatanAdapter.notifyDataSetChanged()
         isLoading = false
     }
 
@@ -167,6 +167,11 @@ class KegiatanActivity : AppCompatActivity() {
     }
 
     private fun showError(error: String){
+        if (isLoading && count > 0){
+            listKegiatan.removeAt(count)
+            kegiatanAdapter.notifyDataSetChanged()
+            isLoading = false
+        }
         val builder = AlertDialog.Builder(this)
         builder.setMessage(error)
         val dialog = builder.create()
